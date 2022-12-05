@@ -1,13 +1,9 @@
-use std::fs::File;
-use std::io::BufReader;
-use std::io::prelude::*;
+#[path="../common.rs"]
+mod common;
 use regex::Regex;
 
-
 pub fn day2() -> std::io::Result<()> {
-    let file = File::open("day2.txt").expect("file not found!");
-    let buf_reader = BufReader::new(file);
-    let lines: Vec<_> = buf_reader.lines().collect();
+    let lines = common::get_data("day2");
 
     let mut acc: usize = 0;
 

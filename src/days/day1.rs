@@ -1,7 +1,6 @@
 use std::io::Error;
-use std::fs::File;
-use std::io::BufReader;
-use std::io::prelude::*;
+#[path="../common.rs"]
+mod common;
 
 fn analyze_length (lines: &Vec<Result<String, Error>>) -> i32 {
     let mut x: i32 = 0;
@@ -23,9 +22,7 @@ fn analyze_length (lines: &Vec<Result<String, Error>>) -> i32 {
 }
 
 pub fn day1() -> std::io::Result<()> {
-    let file = File::open("day1.txt").expect("file not found!");
-    let buf_reader = BufReader::new(file);
-    let lines: Vec<_> = buf_reader.lines().collect();
+    let lines = common::get_data("day1");
     let length = analyze_length(&lines);
     let mut arr_vec = vec![0; length as usize];
     // let mut highest = 0;
