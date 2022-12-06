@@ -10,7 +10,7 @@ pub fn day2() -> std::io::Result<()> {
     for sentence in lines.into_iter() {
         let line = sentence.unwrap();
 
-        /* 
+         /*
         let mut letters:[[char; 2]; 9] = [
             ['B','X'],
             ['C','Y'],
@@ -22,14 +22,14 @@ pub fn day2() -> std::io::Result<()> {
             ['A','Y'],
             ['B','Z']
         ];
-        let mut fake = Regex::new("").unwrap();
-        let mut regex_array:[Regex || i32; 9] = [0; 9];
+        let mut regex_array: Vec<Regex> = Vec::new(); 
 
         for (i, elem) in letters.iter_mut().enumerate() {
             let newstr = format!(r"({})\s({})+", elem[0], elem[1]);
             regex_array[i] = Regex::new(&newstr).unwrap();
         }
         */
+        
 
         let bx = Regex::new(r"(B)\s(X)+").unwrap(); //1
         let cy = Regex::new(r"(C)\s(Y)+").unwrap(); //2
@@ -41,10 +41,10 @@ pub fn day2() -> std::io::Result<()> {
         let ay = Regex::new(r"(A)\s(Y)+").unwrap(); //8
         let bz = Regex::new(r"(B)\s(Z)+").unwrap(); //9
 
-        let mut e:[Regex; 9] = [bx, cy, az, ax, by, cz, cx, ay, bz];
+        let mut regex_array:Vec<Regex> = [bx, cy, az, ax, by, cz, cx, ay, bz].to_vec();
         let mut v: usize = 0;
 
-        for (i, elem) in e.iter_mut().enumerate() {
+        for (i, elem) in regex_array.iter_mut().enumerate() {
             if elem.is_match(&line) {
                 v = i + 1;
             }
@@ -54,6 +54,8 @@ pub fn day2() -> std::io::Result<()> {
         // println!("{}", v);
         
     }
+
+    println!("{}", acc);
 
     Ok(())
 }

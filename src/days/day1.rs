@@ -25,7 +25,6 @@ pub fn day1() -> std::io::Result<()> {
     let lines = common::get_data("day1");
     let length = analyze_length(&lines);
     let mut arr_vec = vec![0; length as usize];
-    // let mut highest = 0;
     let mut highest_arr: Vec<i32> = vec![0; 3];
     let mut v: usize = 0;
     for sentence in lines.into_iter() {

@@ -6,7 +6,7 @@ use regex::Regex;
 
 fn main() -> std::io::Result<()> {
     let args: Vec<String> = env::args().skip(1).collect();
-    let mut day:i32 = 3;
+    let mut day:i32 = 2;
 
     for arg in args.iter() {
         let day_reg = Regex::new(r"(day=)\b([1-9]|1[0-9]|2[0-5])\b").unwrap();
@@ -22,6 +22,8 @@ fn main() -> std::io::Result<()> {
         2 => day2::day2(),
         3 => day3::day3(),
         4 => day4::day4(),
+        5 => day5::day5(),
+        6 => day6::day6(),
         _ => day1::day1(),
     };
 
