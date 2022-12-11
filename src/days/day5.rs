@@ -1,23 +1,38 @@
 #[path="../common.rs"]
 mod common;
+use std::io::Error;
+
 use regex::Regex;
+
+fn define_devision (lines: &Vec<Result<String, Error>>) -> usize {
+    let mut divide: usize = 0;
+    for sentence in lines.into_iter() {
+        if divide < 0 {
+            break;
+        }
+        let line = sentence.as_ref().unwrap();
+        let line_length = line.len();
+        divide = (line_length)/3;
+    }
+    return divide;
+}
 
 pub fn day5() -> std::io::Result<()> {
     let lines = common::get_data("day5");
-    
+    let devision = define_devision(&lines);
+    let mut m1: Vec<char> = Vec::new();
+    let mut m2 = vec![m1; devision];
+
     for sentence in lines.into_iter() {
         let line = sentence.unwrap();
-        let b = line.len();
-        let est = (b)/3;
+        let line_length = line.len();
         let z = 1;
-        let mut m1 = Vec::new();
-        let mut m2 = vec![m1; est]; 
 
         let find = Regex::new(r"(\[)").unwrap();
         if find.is_match(&line) {
-            for n in 0..est {
+            for n in 0..devision {
                 let r = z+(n*4);
-                if b < 0 {
+                if line_length < 0 {
                     break;
                 }
 
@@ -33,7 +48,7 @@ pub fn day5() -> std::io::Result<()> {
                 }
             }
         }
-        println!("{}::{}:{:?}\n", b, line, m2);
+        println!("{}::{}:{:?}\n", line_length, line, m2);
     }
     
     Ok(())
