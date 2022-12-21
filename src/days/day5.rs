@@ -4,14 +4,14 @@ use std::io::Error;
 
 use regex::Regex;
 
-fn define_devision (lines: &Vec<Result<String, Error>>) -> usize {
-    let mut divide: usize = 0;
+fn define_devision (lines: &Vec<Result<String, Error>>) -> i32 {
+    let mut divide: i32 = 0;
     for sentence in lines.into_iter() {
         if divide < 0 {
             break;
         }
         let line = sentence.as_ref().unwrap();
-        let line_length = line.len();
+        let line_length = line.len() as i32;
         divide = (line_length)/3;
     }
     return divide;
@@ -21,11 +21,11 @@ pub fn day5() -> std::io::Result<()> {
     let lines = common::get_data("day5");
     let devision = define_devision(&lines);
     let mut m1: Vec<char> = Vec::new();
-    let mut m2 = vec![m1; devision];
+    let mut m2 = vec![m1; devision as usize];
 
     for sentence in lines.into_iter() {
         let line = sentence.unwrap();
-        let line_length = line.len();
+        let line_length = line.len() as i32;
         let z = 1;
 
         let find = Regex::new(r"(\[)").unwrap();
@@ -38,7 +38,7 @@ pub fn day5() -> std::io::Result<()> {
 
                 let ch = line.chars().nth(r).unwrap();
                 if !ch.is_whitespace() {
-                    m2[n].push(ch);
+                    m2[n as usize].push(ch);
                     //[Z] [M] [P] [Z] [Z] [Z]
                     //
                     //2,6,10,14,18,22,

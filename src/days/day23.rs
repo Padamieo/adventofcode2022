@@ -1,12 +1,12 @@
 #[path="../common.rs"]
 mod common;
 
-pub fn day12() -> std::io::Result<()> {
-    let lines = common::get_data("day12");
+pub fn day23() -> std::io::Result<()> {
+    let lines = common::get_data("day23");
 
     for sentence in lines.into_iter() {
         let line = sentence.unwrap();
-        println!("{}" , line);
+        println!("{}\n" , line);
     }
    
     Ok(())
